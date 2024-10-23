@@ -21,7 +21,7 @@
         <a href="https://developer.mozilla.org/en-US/">MDN Web Documentation</a>
     </div>
     <!-- Heading Tags h1, h2, h3, h4, h5, h6 -->
-    <h1 style="color: blue; margin-top: 25%; font-size: 140px; margin-bottom: -15%; z-index: 100; position: relative;">
+    <h1 id="h1-hello" style="color: blue; margin-top: 25%; font-size: 140px; margin-bottom: -15%; z-index: 100; position: relative;">
         Hello, World
     </h1>
     <h2>
@@ -146,7 +146,7 @@
          </table>
          <form>
             <label for="username">Username: </label>
-            <input type="text" />
+            <input id="username" type="text" />
             <label for="dob">Date of Birth: </label>
             <input type="date" id="dob"/>
             <select>
@@ -154,8 +154,23 @@
                 <option>Insane Computer Programmer</option>
                 <option>Abstracted Computer hardware</option>
             </select>
-            <button>Submit</button>
+            <button onclick='handleSubmit()'>Submit</button>
          </form>
      </div>
+     <br>
+     <div>
+        <h3>Two Truths and One Lie</h3>
+        <ul>
+            <li id="two-truths-and-one-lie-1">I have been out of country</li>
+            <li id="two-truths-and-one-lie-2">I Love Football</li>
+            <li id="two-truths-and-one-lie-3">I know multiple programming languages</li>
+        </ul>
+     </div>
+     <script>
+        function sayHello() {
+            alert("Good Morning SunShine")
+        }
+     </script>
+     <script src="script.js"></script>
 </body>
 </html>
