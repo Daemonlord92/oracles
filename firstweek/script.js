@@ -86,17 +86,17 @@ const arr = [
     }
 ]
 
-arr.forEach(person => {
-    if(person.job === "Software Developer") {
-        console.log(person)
-    }
-})
+// arr.forEach(person => {
+//     if(person.job === "Software Developer") {
+//         console.log(person)
+//     }
+// })
 
-arr.forEach(person => {
-    if(person.job === "Project Manager"){
-        console.log(person)
-    }
-})
+// arr.forEach(person => {
+//     if(person.job === "Project Manager"){
+//         console.log(person)
+//     }
+// })
 
 function handleSubmit() {
     const username = document.getElementById("username")
@@ -106,6 +106,8 @@ function handleSubmit() {
         "dob": dob.value
     }))
 }
+
+
 
 const lion1 = {
     name: "Mufasa",
@@ -128,8 +130,70 @@ const lion3 = {
 
 const lionArr = [lion1, lion2, lion3]
 
-for(let i = 0; i < lionArr.length; i++) {
-    if(lionArr[i].headOfPride && lionArr[i].age > 9){
-        console.table(lionArr[i])
+// for(const element of lionArr) {
+//     if(element.headOfPride &&   element.age > 9){
+//         console.table(element)
+//     }
+// }
+
+// for(let i = 0; i < lionArr.length; i++) {
+//     if(lionArr[i].headOfPride &&   lionArr[i].age > 9){
+//         console.table(lionArr[i])
+//     }
+// }
+
+class Animal {
+    name;
+    species;
+    sound;
+    food;
+
+    constructor(name, species, sound, food) {
+        this.name = name
+        this.species = species
+        this.sound = sound
+        this.food = food
     }
+
+    speak = () => {
+        console.log(this.sound)
+    }
+
+    eat() {
+        console.log(this.name + " is eating " + this.food)
+    }
+
 }
+
+const dog = new Animal("Kupek", "Husky", "Woof", "Meat")
+
+
+dog.speak()
+dog.eat()
+
+const lion4 = new Animal("Nadia", "Lion", "Roar", "Meat")
+
+lion4.speak()
+lion4.eat()
+
+let count = 0
+
+while (count < 50) {
+    console.log(count)
+    count++
+}
+
+count = 0
+
+do {
+    dog.speak()
+    count++
+} while(count < 60)
+
+
+const h2HelloElement = document.getElementById("h2-hello")
+
+h2HelloElement.innerHTML = "Hello Fatima"
+
+h2HelloElement.addEventListener('mouseover', () => h2HelloElement.style = "background-color: green;")
+h2HelloElement.addEventListener('click', ()=> h2HelloElement.style = "background-color: cornflowerblue;")
