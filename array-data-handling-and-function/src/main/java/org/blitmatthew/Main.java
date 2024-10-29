@@ -93,6 +93,15 @@ public class Main {
         };
 
         System.out.println(Arrays.binarySearch(strMatrix[1], "Como Estas"));
+
+
+        String exampleStr = "Stab";
+
+        System.out.println(exampleStr);
+
+
+
+        System.out.println(exampleMethod(exampleStr));
     }
 
     static int[] retrieveEvenNumbers(int[] arr){
@@ -115,5 +124,29 @@ public class Main {
         }
         // Then the new array is return filled with the correct data.
         return result;
+    }
+    // Methods
+    // Access Modifier for the Method
+    // whether it'll be static or not
+    // the return type.
+    // return types can be primitive or reference data types
+    // then we have descriptive method signature
+    // if needed we will also determine parameter types
+    public /* if method is static or not */ static /* return type */String exampleMethod(
+            /* params places here */
+            String str
+    ){
+        // Inside the body of the method
+        // this where we will store our logic to modify or access
+
+        char[] strArray = str.toCharArray();
+
+        for (int i = 0; i < strArray.length; i++) {
+            if(strArray[i] == 'a' || strArray[i] == 'A') {
+                strArray[i] = 'u';
+            }
+        }
+
+        return new String(strArray);
     }
 }
