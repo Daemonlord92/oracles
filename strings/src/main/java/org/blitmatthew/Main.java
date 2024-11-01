@@ -76,5 +76,55 @@ public class Main {
 
         System.out.println(longString.indexOf('m'));
         System.out.println(longString.indexOf('z'));
+
+        //StringBuilder
+        StringBuilder sb = new StringBuilder();
+        // StringBuilder sb = new StringBuilder("Hello, ");
+        // this is the append operation
+        sb.append("Hello, ");
+        sb.append("Oracles");
+        System.out.println(sb.toString());
+        //insert operation
+        sb.insert(7, "Mighty ");
+        System.out.println(sb.toString());
+        sb.insert(21, " Developers");
+        System.out.println(sb.toString());
+
+        //delete operation
+        sb.delete(7, 14);
+        System.out.println(sb.toString());
+
+        sb.deleteCharAt(5);
+        System.out.println(sb.toString());
+
+        // reverse operation
+        sb.reverse();
+        System.out.println(sb.toString());
+
+        sb.reverse();
+
+        sb = new StringBuilder();
+
+        sb.append("Hello, ")
+                .append("Oracles")
+                .append(" Developers")
+                .deleteCharAt(5);
+
+        System.out.println(sb.toString());
+
+        StringBuffer sb2 = new StringBuffer("Hello, ");
+
+        sb2.append("Oracles");
+
+        System.out.println(sb2.toString());
+
+        sb2.deleteCharAt(5);
+
+        System.out.println(sb2.toString());
+
+        sb2.reverse();
+
+        System.out.println(sb2.toString());
+
     }
 }
