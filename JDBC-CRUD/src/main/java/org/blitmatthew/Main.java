@@ -23,5 +23,16 @@ public class Main {
         inventoryRepository.save(inventory);*/
 
         inventoryRepository.findAll().forEach(System.out::println);
+
+//        Inventory inventory = inventoryRepository.findById(1l);
+//        inventory.setProductName("HP Gaming Pavilion");
+//        inventory.setQuantity(250L);
+//        inventoryRepository.update(inventory);
+//
+//        System.out.println(inventoryRepository.findById(1l));
+
+        inventoryRepository.deleteById(1l);
+
+        inventoryRepository.findAll().forEach(System.out::println);
     }
 }
