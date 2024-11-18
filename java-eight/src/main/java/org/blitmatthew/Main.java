@@ -1,6 +1,7 @@
 package org.blitmatthew;
 
 import org.blitmatthew.Helper.Calculator;
+import org.blitmatthew.entity.Person;
 
 import java.time.LocalDate;
 import java.time.temporal.TemporalAmount;
@@ -34,72 +35,90 @@ public class Main {
 ////            }
 ////        }
 //        strList.stream().filter(name -> name.startsWith("F")).sorted().toList().forEach(System.out::println);
-        //Function interface
-        //Will take in one parameter and give one output
-        Function<Integer, Integer> subtract = x -> x-15;
-        System.out.println(subtract.apply(45));
-        //Predicate Interface
-        // will take one parameter and output a boolean value
-        Predicate<String> compare = x -> "Hello".equals(x);
-        System.out.println(compare.test("Hi"));
-        BiPredicate<String, String> compareTo = (x,y) -> x.equals(y);
-        System.out.println(compareTo.test("Hello", "Hello"));
-        //Supplier Interface
-        //Will supply an output
-        Supplier<List<Integer>> numListCreator = () -> {
-          List<Integer> numList = new ArrayList<>();
-            for (int i = 0; i < new Random().nextInt(100); i++) {
-                numList.add(new Random().nextInt(500));
-            }
-            return numList;
+//
+
+        // Functional Interfaces
+        // Single Abstract Methods
+        // Multiple Default or Static Methods
+        // Turn are Methods into DataTypes to passed around
+        // Also allows us to give specific implementations for methods on the Fly.
+        // Java 8 Built in FunctionalInterfaces
+        // Function Interface
+        // Allows to write a function and store in variable to be called on the fly.
+        Function<String, Boolean> containsVowels = (x) -> {
+            String vowels = "aeiouAEIOU";
+          for(Character c : x.toCharArray()){
+              for(Character k : vowels.toCharArray()){
+                  if(c == k) {
+                      return true;
+                  }
+              }
+          }
+          return false;
         };
 
-        List<Integer> numList = numListCreator.get();
-        System.out.println(numList);
+        System.out.println(containsVowels.apply("jst"));
+        System.out.println(containsVowels.apply("Haqmal"));
+
+        //Predicate Interface
+        // Take in one param and return a boolean value based off of it
+        Predicate<Integer> isLessThanHundred = x -> x < 100;
+
+        System.out.println(isLessThanHundred.test(75));
+        System.out.println(isLessThanHundred.test(115));
+
+        //Supplier Interface
+        //This one will just supply data out of it
+        Supplier<String> randomName = () -> {
+            Integer randomInt = new Random().nextInt(10);
+            List<String> names = List.of(
+                    "Matthew",
+                    "Fawad",
+                    "Haqmal",
+                    "Yaman",
+                    "Yohannes",
+                    "Fatima",
+                    "Fahima",
+                    "Amos",
+                    "Nazi",
+                    "Wilfred"
+            );
+            return names.get(randomInt);
+        };
+
+        String name = randomName.get();
+        System.out.println(name);
+        System.out.println(randomName.get());
+        System.out.println(randomName.get());
+        System.out.println(randomName.get());
+        System.out.println(randomName.get());
+        System.out.println(randomName.get());
+        System.out.println(randomName.get());
+        System.out.println(randomName.get());
+
         //Consumer Interface
-        // Will take in a input but will not return anything
-        Consumer<List<Integer>> sortList = x -> Collections.sort(x);
+        // This will take in a param but will not return anything
 
-        sortList.accept(numList);
-        System.out.println(numList);
-        //Lambda Statements
-        //Use the Functional solution
-        // allows write methods on the fly
-        // allows to store the methods as a Object
+        Consumer<Person> modifyAge = x -> x.setAge(LocalDate.now().getYear() - x.getDob().getYear());
 
-        Consumer<Integer> print = x-> System.out.println(x);
+        Person person = new Person();
+        person.setName("Fawad");
+        person.setGender("Male");
+        person.setDob(LocalDate.parse("2001-01-29"));
 
-        exampleMethodWithConsumerDatatype(15, 85, print);
-        //Method References
-        //Static Reference
-        //We don't have instantiated the object to use the references
-        //Object Reference
-        //We have to instantiate the object to use the Reference
-        numList.forEach(System.out::println/*This is an example of Static Method Reference*/);
+        modifyAge.accept(person);
 
-        Calculator calculator = new Calculator();
-        System.out.println(numList.stream().mapMultiToInt(calculator::add/*Object Method Reference*/).findFirst().getAsInt());
+        System.out.println(person.getAge());
+
         //Optional Class
-        //Allows us as developers to check if we got a result from a stream, API call, Database Row Call
-        Optional<Integer> optionalI = numList.stream().filter(x -> x > 250).filter(x-> x<400).findFirst();
-        if(optionalI.isPresent()){
-            System.out.println(optionalI.get());
+        //is a Wrapper Class/ Container Class
+        // NullPointerException
+        // Programming Languages HATE Nulls
+        Optional<Person> optionalPerson = Optional.of(person);
+        if(optionalPerson.isPresent()) {
+            System.out.println("Person Object is Available");
         }
-        Integer optionalInteger = numList.stream().filter(x -> x > 250).filter(x-> x<400).findFirst().orElseThrow(
-                ()-> new RuntimeException("Unfortunately the Random generator did not produce the right number")
-        );
 
-        Date date = new Date();
-        System.out.println(date.toString());
-        Date date1 = new Date(1283732897324L);
-        System.out.println(date1.toString());
-        //LocalDate
-        //LocalDateTime
-        //LocalTime
-        LocalDate date2 = LocalDate.now();
-        System.out.println(date2);
-        System.out.println(date2.plusDays(31));
-        System.out.println(date2.plusYears(100));
     }
 
     static void exampleMethodWithConsumerDatatype(Integer a, Integer b, Consumer<Integer> printer) {
