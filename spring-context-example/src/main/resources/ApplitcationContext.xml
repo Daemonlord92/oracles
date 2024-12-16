@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- The root element of the Spring configuration file -->
+    <!-- It defines the beans and application context configurations -->
+
+    <!-- Beans are singletons by default in Spring unless explicitly specified otherwise -->
+    <!-- A Singleton bean is created once and shared throughout the application lifecycle -->
+
+    <!-- Uncomment this section to explicitly define beans in XML -->
+    <!-- Defining UserRepository as a bean -->
+    <!--
+    <bean id="userRepo" class="org.blitmatthew.repository.UserRepository" />
+    -->
+
+    <!-- Defining UserService as a bean with a dependency on UserRepository -->
+    <!-- Dependencies are resolved using the `constructor-arg` element -->
+    <!--
+    <bean id="userService" class="org.blitmatthew.service.UserService">
+        <constructor-arg index="0" ref="userRepo"/>
+    </bean>
+    -->
+
+    <!-- Enabling component scanning for the specified base package -->
+    <!-- This tells Spring to automatically detect and register beans annotated with @Component, @Service, @Repository, and @Controller -->
+    <context:component-scan base-package="org.blitmatthew"/>
+</beans>
