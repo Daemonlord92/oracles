@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Toy Marketplace | List of Toys</title>
+</head>
+<body>
+  <h1>
+    Toy List
+  </h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Color</th>
+        <th>Size</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:each="toy: ${toys}">
+        <td th:text="${toy.name}"></td>
+        <td th:text="${toy.color}"></td>
+        <td th:text="${toy.size}"></td>
+        <td th:text="${toy.description}"></td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+</html>
