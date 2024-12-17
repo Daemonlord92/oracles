@@ -19,4 +19,9 @@ public class ToyServiceImpl implements ToyService{
     public List<Toy> getToys() {
         return toyRepository.findAll();
     }
+
+    @Override
+    public void saveToy(Toy toy) {
+        toyRepository.save(toy);
+    }
 }

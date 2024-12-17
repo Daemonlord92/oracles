@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface ToyService {
     List<Toy> getToys();
+    void saveToy(Toy toy);
 }

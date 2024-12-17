@@ -1,5 +1,6 @@
 package com.blitmatthew.marketplace_demo;
 
+import com.blitmatthew.marketplace_demo.entity.Toy;
 import com.blitmatthew.marketplace_demo.repository.ToyRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -39,5 +40,8 @@ public class MarketplaceDemoApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		logger.info(toyRepository.findByName("DoomSlayer").toString());
+
+		Toy toy = new Toy("Blue", 5.0, "A Blue and White Panda Bear for all of your cuddling needs", "Panda");
+		toyRepository.save(toy);
 	}
 }
