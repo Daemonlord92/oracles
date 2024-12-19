@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
@@ -39,6 +40,29 @@ public class ToyController {
             return "addToy";
         }
         toyService.saveToy(toy);
+        return "redirect:/toy/";
+    }
+
+    @GetMapping("/toy/edit/{id}")
+    public String updateToy(@PathVariable Long id, Model model) {
+        Toy toy = toyService.getToyById(id);
+        model.addAttribute("toy", toy);
+        return "editToy";
+    }
+
+    @PostMapping("/toy/edit/{id}")
+    public String updateToy(@ModelAttribute("toy") @Valid Toy toy, Errors errors) {
+        if(errors.hasErrors()){
+            return "editToy";
+        }
+
+        toyService.updateToy(toy);
+        return "redirect:/toy/";
+    }
+
+    @GetMapping("/toy/delete/{id}")
+    public String deleteToy(@PathVariable Long id) {
+        toyService.deleteToyById(id);
         return "redirect:/toy/";
     }
 }

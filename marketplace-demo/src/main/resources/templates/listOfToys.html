@@ -16,6 +16,7 @@
         <th>Color</th>
         <th>Size</th>
         <th>Description</th>
+        <th>Admin Controls</th>
       </tr>
     </thead>
     <tbody>
@@ -23,7 +24,11 @@
         <td th:text="${toy.name}"></td>
         <td th:text="${toy.color}"></td>
         <td th:text="${toy.size}"></td>
-        <td th:text="${toy.description}"></td>
+        <td th:text="${toy.description}"></td>\
+        <td>
+          <a th:href="@{'/toy/edit/' + ${toy.id}}">Edit this toy</a>
+          <a th:href="@{'/toy/delete/' + ${toy.id}}">Delete Toy</a>
+        </td>
       </tr>
     </tbody>
   </table>
