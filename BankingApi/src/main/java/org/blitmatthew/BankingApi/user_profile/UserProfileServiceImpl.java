@@ -42,4 +42,14 @@ public class UserProfileServiceImpl implements UserProfileService {
         userProfile.setPhone(updateUserProfile.phone());
         userProfileRepository.save(userProfile);
     }
+
+    @Override
+    public UserProfile getUserProfileById(String id) {
+        return userProfileRepository.findById(id)
+                .orElseThrow(() ->
+                        new UserProfileNotFoundException(
+                                "UserProfile with the id " +
+                                        id +
+                                        " Not found!"));
+    }
 }

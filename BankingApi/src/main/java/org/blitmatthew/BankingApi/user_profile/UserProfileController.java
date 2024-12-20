@@ -21,11 +21,7 @@ public class UserProfileController {
 
     @PutMapping("/update")
     public ResponseEntity<MessageResponse> postUpdateProfile(@RequestBody UpdateUserProfile updateUserProfile) {
-        try{
-            userProfileService.updateUserProfile(updateUserProfile);
-            return ResponseEntity.ok(new MessageResponse("User Profile has been updated!"));
-        } catch (Exception e) {
-            return new ResponseEntity<>(new MessageResponse(e.getMessage()),HttpStatus.BAD_REQUEST);
-        }
+        userProfileService.updateUserProfile(updateUserProfile);
+        return ResponseEntity.ok(new MessageResponse("User Profile has been updated!"));
     }
 }

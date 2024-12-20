@@ -7,4 +7,5 @@ import org.blitmatthew.BankingApi.user_profile.dto.UpdateUserProfile;
 public interface UserProfileService {
     UserProfile createUserProfile(PostUserInformation postUserInformation);
     void updateUserProfile(UpdateUserProfile updateUserProfile);
+    UserProfile getUserProfileById(String id);
 }
