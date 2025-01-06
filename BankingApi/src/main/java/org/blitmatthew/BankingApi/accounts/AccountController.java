@@ -2,6 +2,7 @@ package org.blitmatthew.BankingApi.accounts;
 
 import org.blitmatthew.BankingApi.accounts.dto.PostNewAccountInformation;
 import org.blitmatthew.BankingApi.shared.dto.MessageResponse;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,6 +22,6 @@ public class AccountController {
     public ResponseEntity<MessageResponse> postNewAccount(
             @RequestBody PostNewAccountInformation postNewAccountInformation
     ) {
-        return
+        return new ResponseEntity<>(accountService.createAccount(postNewAccountInformation), HttpStatus.CREATED);
     }
 }
