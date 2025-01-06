@@ -2,6 +2,7 @@ package org.blitmatthew.BankingApi.accounts;
 
 import org.blitmatthew.BankingApi.accounts.dto.AccountInformation;
 import org.blitmatthew.BankingApi.accounts.dto.PostNewAccountInformation;
+import org.blitmatthew.BankingApi.accounts.exception.AccountActiveException;
 import org.blitmatthew.BankingApi.accounts.exception.BankAccountNotFoundException;
 import org.blitmatthew.BankingApi.entity.Account;
 import org.blitmatthew.BankingApi.shared.dto.MessageResponse;
@@ -39,5 +40,31 @@ public class AccountServiceImpl implements AccountService {
                 account.getIsActive(),
                 account.getCreatedAt()
         );
+    }
+
+    @Override
+    public MessageResponse disableAccount(String id) {
+        Account account = accountRepository.findById(id).orElseThrow(() ->
+                new BankAccountNotFoundException("Account with id ".concat(id).concat(" was not found")));
+        if(!account.getIsActive()) throw new AccountActiveException("Account with is "
+                .concat(id)
+                .concat(" is already disabled"));
+        account.setIsActive(false);
+        account.setDisabledAt(LocalDate.now());
+        accountRepository.save(account);
+        return new MessageResponse("Account with id of ".concat(id).concat(" has been disabled"));
+    }
+
+    @Override
+    public MessageResponse enableAccount(String id) {
+        Account account = accountRepository.findById(id).orElseThrow(() ->
+                new BankAccountNotFoundException("Account with id ".concat(id).concat(" was not found")));
+        if(account.getIsActive()) throw new AccountActiveException("Account with is "
+                .concat(id)
+                .concat(" is already enabled"));
+        account.setIsActive(true);
+        account.setDisabledAt(null);
+        accountRepository.save(account);
+        return new MessageResponse("Account with id of ".concat(id).concat(" has been enabled"));
     }
 }

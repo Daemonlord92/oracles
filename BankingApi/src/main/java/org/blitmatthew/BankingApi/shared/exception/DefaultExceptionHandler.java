@@ -1,6 +1,7 @@
 package org.blitmatthew.BankingApi.shared.exception;
 
 import jakarta.servlet.http.HttpServletRequest;
+import org.blitmatthew.BankingApi.accounts.exception.AccountActiveException;
 import org.blitmatthew.BankingApi.accounts.exception.BankAccountNotFoundException;
 import org.blitmatthew.BankingApi.shared.dto.ApiError;
 import org.blitmatthew.BankingApi.user_profile.exception.UserProfileNotFoundException;
@@ -16,7 +17,7 @@ public class DefaultExceptionHandler {
 
     @ExceptionHandler({UserProfileNotFoundException.class, BankAccountNotFoundException.class})
     public ResponseEntity<ApiError> exceptionHandler(
-            UserProfileNotFoundException e,
+            Exception e,
             HttpServletRequest request
     ) {
         ApiError apiError = new ApiError(
@@ -26,5 +27,19 @@ public class DefaultExceptionHandler {
                 LocalDateTime.now()
         );
         return new ResponseEntity<>(apiError, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler({AccountActiveException.class})
+    public ResponseEntity<ApiError> exceptionHandler(
+            AccountActiveException e,
+            HttpServletRequest request
+    ) {
+        ApiError apiError = new ApiError(
+                request.getRequestURI(),
+                e.getMessage(),
+                HttpStatus.BAD_REQUEST.value(),
+                LocalDateTime.now()
+        );
+        return new ResponseEntity<>(apiError, HttpStatus.BAD_REQUEST);
     }
 }

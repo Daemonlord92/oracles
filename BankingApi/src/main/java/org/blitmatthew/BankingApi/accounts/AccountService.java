@@ -7,4 +7,6 @@ import org.blitmatthew.BankingApi.shared.dto.MessageResponse;
 public interface AccountService {
     MessageResponse createAccount(PostNewAccountInformation request);
     AccountInformation getAccountById(String id);
+    MessageResponse disableAccount(String id);
+    MessageResponse enableAccount(String id);
 }
