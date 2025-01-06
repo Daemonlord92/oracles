@@ -1,6 +1,7 @@
 package org.blitmatthew.BankingApi.shared.exception;
 
 import jakarta.servlet.http.HttpServletRequest;
+import org.blitmatthew.BankingApi.accounts.exception.BankAccountNotFoundException;
 import org.blitmatthew.BankingApi.shared.dto.ApiError;
 import org.blitmatthew.BankingApi.user_profile.exception.UserProfileNotFoundException;
 import org.springframework.http.HttpStatus;
@@ -13,7 +14,7 @@ import java.time.LocalDateTime;
 @RestControllerAdvice
 public class DefaultExceptionHandler {
 
-    @ExceptionHandler(UserProfileNotFoundException.class)
+    @ExceptionHandler({UserProfileNotFoundException.class, BankAccountNotFoundException.class})
     public ResponseEntity<ApiError> exceptionHandler(
             UserProfileNotFoundException e,
             HttpServletRequest request
